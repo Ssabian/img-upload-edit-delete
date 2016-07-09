@@ -48,6 +48,11 @@
         </style>
     </head>
     <body>
+    @foreach($gallery->all() as $gallery)
+    <ul>
+        <li>{{$gallery->path_large}}<a href="/delete/{{$gallery->id}}" class="btn btn-danger">Delete </a></li>
+    </ul>
+    @endforeach
         <div class="container">
             <div class="content">
                      
@@ -56,7 +61,11 @@
                 <label>Select image to upload</label>
                   <input type="file"  name="file" id="file"/>
                   <input type="submit" value="upload" name="submit"></input>
+
+                  
                   <input type="hidden" value="{{csrf_token() }}" name="_token"></input>
+
+                   {{-- <button type="submit" id="delete-task-{{ $delete->id }}" class="btn btn-danger"> --}}
                 </form>
             </div>
         </div>

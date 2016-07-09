@@ -13,3 +13,5 @@
 Route::get('/welcome','FileController@index');
 
 Route::post('/upload','FileController@store');
+
+Route::get('/delete/{gallery}' ,'FileController@delete');

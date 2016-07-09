@@ -8,18 +8,20 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\News;
+use App\Gallery;
 
 class FileController extends Controller
 {	
 
 	 public function index(){
-         return view('welcome');
+	 	$gallery= Gallery::all();
+         return view('welcome',compact('gallery'));
     }
     public function store(Request $request)
     {
-    	$news = new News;
-    	$news->main_img=$request->file;
-    	$news->save();
+    	$gallery = new Gallery;
+    	$gallery->path_large=$request->file;
+    	$gallery->save();
     	
 
     	
@@ -28,5 +30,10 @@ class FileController extends Controller
     	echo '<img src="uploads/' . $file->getClientOriginalName() . '" />';
     	return back();
   	
+  }
+  public function delete(Gallery $gallery)
+  {
+  	$gallery->delete();
+  	return back();
   }
 }
