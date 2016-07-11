@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/welcome','FileController@index');
+Route::get('/fileUpload','FileController@index');
 
 Route::post('/upload','FileController@store');
 

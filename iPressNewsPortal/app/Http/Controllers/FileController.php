@@ -15,12 +15,12 @@ class FileController extends Controller
 
 	 public function index(){
 	 	$gallery= Gallery::all();
-         return view('welcome',compact('gallery'));
+         return view('fileUpload',compact('gallery'));
     }
     public function store(Request $request)
     {
     	$gallery = new Gallery;
-    	$gallery->path_large=$request->file;
+    	$gallery->path_large=$request->file->getClientOriginalName();
     	$gallery->save();
     	
 
@@ -33,6 +33,7 @@ class FileController extends Controller
   }
   public function delete(Gallery $gallery)
   {
+  	// $filedelete('uploads/' . 'test.jpg');
   	$gallery->delete();
   	return back();
   }
